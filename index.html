@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angel Bargola — Advanced Data Entry & Virtual Assistant</title>
+<meta name="description" content="Portfolio of Angel Bargola, an advanced data entry specialist and virtual assistant with expertise in automation, spreadsheets, and administrative operations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   DESIGN TOKENS
+============================================ */
+:root {
+  --bg: #FAF8FD;
+  --bg-alt: #FFFFFF;
+  --blush: #B79CED;
+  --blush-light: #EDE5FB;
+  --blush-dark: #9B7FE0;
+  --mauve-start: #8B6DC7;
+  --mauve-end: #5F4695;
+  --charcoal: #2B2632;
+  --gray: #6C6373;
+  --gray-light: #A79EB0;
+  --black: #1A1A1A;
+  --border: #E6DFF2;
+  --success: #6E9B7B; 
+  --leave: #C79A4B;
+
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  --radius-lg: 28px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 20px 45px -25px rgba(43, 36, 32, 0.25);
+  --shadow-card: 0 10px 30px -18px rgba(43, 36, 32, 0.18);
+  --container: 1180px;
+}
+
+/* ============================================
+   RESET
+============================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--charcoal);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, textarea { font-family: inherit; font-size: 1rem; }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ============================================
+   TYPOGRAPHY
+============================================ */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mauve-end);
+  margin-bottom: 14px;
+}
+.eyebrow.center { text-align: center; }
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.15;
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+.section-title.center { text-align: center; }
+
+.section-sub {
+  color: var(--gray);
+  max-width: 560px;
+  margin-bottom: 48px;
+}
+.section-sub.center { margin-left: auto; margin-right: auto; text-align: center; }
+
+.sub-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.muted { color: var(--gray); font-size: 0.92rem; }
+
+/* ============================================
+   BUTTONS
+============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 30px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  white-space: nowrap;
+}
+.btn-sm { padding: 10px 20px; font-size: 0.82rem; }
+.btn-blush {
+  background: var(--blush);
+  color: var(--black);
+}
+.btn-blush:hover { background: var(--blush-dark); transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+.btn-black {
+  background: var(--black);
+  color: #fff;
+}
+.btn-black:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+.btn-outline {
+  background: transparent;
+  color: var(--charcoal);
+  border: 1.5px solid var(--charcoal);
+}
+.btn-outline:hover { background: var(--charcoal); color: #fff; transform: translateY(-2px); }
+
+/* ============================================
+   HEADER / NAV
+============================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 248, 253, 0.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+.logo em { font-style: normal; font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-left: 6px; vertical-align: middle;}
+.logo-dot { color: var(--blush-dark); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.nav-link {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  position: relative;
+  padding: 4px 0;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 2px;
+  background: var(--blush-dark);
+  transition: width 0.25s ease;
+}
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+}
+.nav-toggle span {
+  width: 22px; height: 2px;
+  background: var(--charcoal);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* ============================================
+   HERO
+============================================ */
+.hero {
+  padding: 90px 0 70px;
+  overflow: hidden;
+}
+.hero-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 60px;
+  align-items: center;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1.08;
+  font-weight: 600;
+  margin-bottom: 22px;
+  letter-spacing: -0.01em;
+}
+.hero-title em { font-style: italic; color: var(--mauve-end); }
+.hero-sub {
+  color: var(--gray);
+  font-size: 1.05rem;
+  max-width: 480px;
+  margin-bottom: 32px;
+}
+.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 34px; }
+.hero-contact {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--gray);
+}
+.hero-contact a:hover { color: var(--mauve-end); }
+
+.hero-stats {
+  display: grid;
+  align-items: center;
+  justify-items: end;
+}
+.hero-stats-card {
+  width: min(500px, 100%);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-card);
+}
+.hero-stats-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+.hero-stats-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--blush-light);
+  font-weight: 700;
+  color: var(--charcoal);
+}
+.hero-stats-list strong {
+  color: var(--mauve-end);
+}
+
+.hero-photo-wrap { position: relative; }
+.hero-photo {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: linear-gradient(160deg, var(--blush-light), var(--blush));
+  box-shadow: var(--shadow-soft);
+}
+.photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  color: var(--mauve-end);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,0.35) 0 12px, transparent 12px 24px);
+  border: 2px dashed var(--blush-dark);
+  border-radius: inherit;
+  padding: 20px;
+}
+/* .photo-placeholder--sm { aspect-ratio: 1/1.2; border-radius: var(--radius-md); }
+.photo-placeholder--wide { aspect-ratio: 16/8; border-radius: var(--radius-md); } */
+.about-photo { border-radius: var(--radius-md); box-shadow: var(--shadow-card); }
+
+.stat-pill {
+  position: absolute;
+  background: #fff;
+  border-radius: var(--radius-pill);
+  padding: 12px 20px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.1;
+  min-width: 100px;
+}
+.stat-pill strong { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--charcoal); }
+.stat-pill span { font-size: 0.68rem; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; }
+.stat-pill--1 { top: -4%; left: -8%; }
+.stat-pill--2 { top: 18%; right: -12%; background: var(--charcoal); }
+.stat-pill--2 strong, .stat-pill--2 span { color: #fff; }
+.stat-pill--3 { bottom: 14%; left: -14%; }
+.stat-pill--4 { bottom: -6%; right: 4%; background: var(--blush); }
+
+/* ============================================
+   SECTION GENERIC
+============================================ */
+.section { padding: 90px 0; }
+.section.about { padding-top: 40px; }
+
+/* ============================================
+   ABOUT
+============================================ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  gap: 60px;
+  align-items: center;
+}
+.about-stats {
+  display: flex;
+  gap: 36px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+.about-stats strong { display: block; font-family: var(--font-display); font-size: 1.6rem; color: var(--mauve-end); }
+.about-stats span { font-size: 0.8rem; color: var(--gray); font-weight: 500; }
+
+/* ============================================
+   SUMMARY CARDS
+============================================ */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 20px;
+}
+.summary-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 30px 24px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.summary-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); }
+.summary-card h3 { font-size: 1.02rem; margin-bottom: 8px; font-weight: 700; }
+.summary-card p { font-size: 0.86rem; color: var(--gray); }
+
+.icon-circle {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: var(--blush-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  margin: 0 auto 16px;
+}
+.icon-circle--blush { background: var(--blush); }
+
+/* ============================================
+   SKILLS
+============================================ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 20px;
+  margin-bottom: 70px;
+}
+.skills-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 32px 28px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.skills-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); }
+.skills-card h3 { font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 16px; text-align: center; }
+.pill-list { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.pill-list li {
+  background: var(--blush-light);
+  color: var(--mauve-end);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+}
+
+/* Proficiency table */
+.proficiency-wrap { margin-bottom: 70px; }
+.table-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 8px;
+  box-shadow: var(--shadow-card);
+  overflow-x: auto;
+}
+.proficiency-table { width: 100%; border-collapse: collapse; }
+.proficiency-table th {
+  text-align: left;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray);
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.proficiency-table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.proficiency-table tr:last-child td { border-bottom: none; }
+.proficiency-table td:first-child { display: table-cell; font-weight: 600; }
+.level-bar {
+  display: inline-block;
+  width: 110px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--blush-light);
+  overflow: hidden;
+}
+.level-fill {
+  display: block;
+  height: 100%;
+  width: var(--pct);
+  background: linear-gradient(90deg, var(--mauve-start), var(--blush-dark));
+  border-radius: var(--radius-pill);
+}
+.level-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+.level-tag--adv { background: var(--blush-light); color: var(--mauve-end); }
+.level-tag--int { background: #F3ECE0; color: var(--leave); }
+
+/* Typing speed */
+.typing-speed {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 32px;
+  align-items: center;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+}
+.typing-numbers { display: flex; gap: 40px; margin-bottom: 10px; }
+.typing-numbers strong { display: block; font-family: var(--font-display); font-size: 2.4rem; color: var(--mauve-end); line-height: 1; }
+.typing-numbers span { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray); font-weight: 600; }
+
+/* ============================================
+   BANNER
+============================================ */
+.banner {
+  background: linear-gradient(115deg, var(--mauve-start), var(--mauve-end));
+  padding: 90px 0;
+  margin: 20px 0;
+}
+.banner-inner { text-align: center; max-width: 640px; margin: 0 auto; }
+.banner-inner h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 18px;
+  line-height: 1.2;
+}
+.banner-inner p { color: rgba(255,255,255,0.9); margin-bottom: 30px; }
+
+/* ============================================
+   WORK SAMPLES
+============================================ */
+.sample-card {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 50px;
+  align-items: center;
+  padding: 50px 0;
+  border-bottom: 1px solid var(--border);
+}
+.sample-card:last-child { border-bottom: none; }
+.sample-card--rev .sample-text { order: 2; }
+.sample-card--rev .sample-visual { order: 1; }
+.sample-tag {
+  display: inline-block;
+  background: var(--blush);
+  color: var(--black);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 14px;
+}
+.sample-visual {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sample-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+  will-change: transform;
+}
+.sample-visual:hover img {
+  transform: scale(1.105);
+}
+.sample-visual .placeholder {
+  display: grid;
+  place-items: center;
+  min-height: 280px;
+  width: 100%;
+  padding: 28px;
+  text-align: center;
+  color: var(--gray);
+  background: repeating-linear-gradient(135deg, rgba(183, 156, 237, 0.06) 0 16px, transparent 16px 32px);
+}
+.sample-visual .placeholder strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: var(--mauve-end);
+}
+.sample-visual .placeholder code {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.82rem;
+  color: var(--charcoal);
+}
+.image-modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(24, 18, 48, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 9999;
+}
+.image-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.image-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(24, 18, 48, 0.72);
+}
+.image-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(980px, 92vw);
+  max-height: 92vh;
+  background: var(--bg-alt);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.image-modal__image {
+  width: 100%;
+  max-height: calc(92vh - 110px);
+  object-fit: contain;
+  background: #000;
+}
+.image-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.92);
+  color: var(--charcoal);
+  font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px -16px rgba(0,0,0,0.35);
+}
+.image-modal__caption {
+  padding: 16px 24px 24px;
+  font-size: 0.95rem;
+  color: var(--gray);
+  text-align: center;
+}
+.sample-text h3 { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 10px; }
+.sample-text p { color: var(--gray); margin-bottom: 18px; }
+.check-list li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.check-list li::before {
+  content: '✓';
+  position: absolute; left: 0; top: 0;
+  color: var(--mauve-end);
+  font-weight: 700;
+}
+.check-list--exp li { font-weight: 400; color: var(--charcoal); }
+
+.mock-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.mock-table th {
+  text-align: left;
+  background: var(--blush-light);
+  color: var(--mauve-end);
+  padding: 10px 14px;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.mock-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.mock-table tr:last-child td { border-bottom: none; }
+.mock-table--messy td { color: var(--gray); font-style: italic; }
+
+.status { font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: var(--radius-pill); }
+.status--active { background: #E6F0E9; color: var(--success); }
+.status--inactive { background: #F3E4E4; color: #B15C5C; }
+.status--leave { background: #F6EDD9; color: var(--leave); }
+
+.before-after { display: flex; align-items: center; gap: 14px; }
+.ba-block { flex: 1; padding: 16px; }
+.ba-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray); margin-bottom: 10px; padding: 0 4px; }
+.ba-label--after { color: var(--success); }
+.ba-arrow { font-size: 1.4rem; color: var(--mauve-end); flex-shrink: 0; }
+.pdf-mock { padding: 10px; display: flex; flex-direction: column; gap: 10px; }
+.pdf-mock span { display: block; height: 8px; border-radius: 4px; background: var(--border); }
+.pdf-mock span.short { width: 60%; }
+
+/* ============================================
+   PROJECTS
+============================================ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 20px;
+}
+.project-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); }
+.project-card h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 8px; }
+.project-card p { color: var(--gray); font-size: 0.88rem; margin-bottom: 16px; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: var(--blush-light);
+  color: var(--mauve-end);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+}
+
+/* ============================================
+   PROCESS FLOW (signature element)
+============================================ */
+.flow {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  margin-top: 30px;
+  position: relative;
+}
+.flow-step {
+  position: relative;
+  text-align: center;
+  padding: 0 14px;
+}
+.flow-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 27px;
+  left: 58%;
+  width: 84%;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--blush-dark) 0 8px, transparent 8px 14px);
+}
+.flow-node {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--mauve-start), var(--mauve-end));
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  position: relative;
+  z-index: 2;
+  box-shadow: var(--shadow-card);
+}
+.flow-step h4 { font-size: 0.95rem; margin-bottom: 6px; }
+.flow-step p { font-size: 0.8rem; color: var(--gray); }
+
+/* ============================================
+   EXPERIENCE
+============================================ */
+.exp-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-card);
+}
+.exp-head h3 { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 4px; }
+.exp-head { margin-bottom: 22px; }
+
+/* ============================================
+   CERTIFICATIONS
+============================================ */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 20px;
+}
+.cert-card {
+  text-align: center;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 30px 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cert-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); }
+.cert-card h4 { font-size: 0.92rem; font-weight: 700; }
+
+/* ============================================
+   RESUME BANNER
+============================================ */
+.resume-section { padding: 60px 0; }
+.resume-inner {
+  background: var(--blush-light);
+  border-radius: var(--radius-lg);
+  padding: 50px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.resume-inner .section-title { margin-bottom: 8px; }
+.resume-inner p { color: var(--gray); max-width: 420px; }
+
+/* ============================================
+   CONTACT
+============================================ */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 60px;
+}
+.contact-list { margin-top: 26px; }
+.contact-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.contact-list li:first-child { padding-top: 0; }
+.contact-list span { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray); font-weight: 600; }
+.contact-list a { font-weight: 600; }
+.contact-list a:hover { color: var(--mauve-end); }
+
+.contact-form {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: var(--shadow-card);
+}
+.contact-form label { font-size: 0.82rem; font-weight: 600; display: flex; flex-direction: column; gap: 8px; }
+.contact-form input, .contact-form textarea {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+  outline: none;
+  border-color: var(--blush-dark);
+}
+.form-status { font-size: 0.85rem; font-weight: 600; min-height: 1.2em; color: var(--success); }
+
+/* ============================================
+   FOOTER
+============================================ */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 30px 0;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ============================================
+   SCROLL REVEAL
+============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: var(--delay, 0ms);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ============================================
+   FOCUS STATES (a11y)
+============================================ */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--mauve-end);
+  outline-offset: 3px;
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 980px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-photo-wrap { max-width: 420px; margin: 0 auto; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo { max-width: 280px; margin: 0 auto; }
+  .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  .skills-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .certs-grid { grid-template-columns: repeat(2, 1fr); }
+  .flow { grid-template-columns: repeat(3, 1fr); row-gap: 40px; }
+  .flow-step:nth-child(3)::after { display: none; }
+  .typing-speed { grid-template-columns: 1fr; }
+  .sample-card, .sample-card--rev .sample-text, .sample-card--rev .sample-visual {
+    grid-template-columns: 1fr; order: unset;
+  }
+  .sample-card { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 680px) {
+  .nav-links {
+    position: fixed;
+    top: 68px; left: 0; right: 0;
+    background: var(--bg);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 32px;
+    gap: 18px;
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-120%);
+    transition: transform 0.3s ease;
+  }
+  .nav-links.is-open { transform: translateY(0); }
+  .nav-toggle { display: flex; }
+  .hero { padding: 50px 0; }
+  .stat-pill { position: static; margin: 8px; display: inline-flex; }
+  .hero-photo-wrap { display: flex; flex-direction: column; align-items: center; }
+  .summary-grid, .projects-grid, .certs-grid { grid-template-columns: 1fr; }
+  .flow { grid-template-columns: 1fr; }
+  .flow-step::after { display: none !important; }
+  .banner { padding: 60px 0; }
+  .resume-inner { padding: 36px 24px; flex-direction: column; text-align: center; }
+  .before-after { flex-direction: column; }
+  .ba-arrow { transform: rotate(90deg); }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="site-header" id="top">
+  <div class="nav-wrap">
+    <a href="#top" class="logo">Angel<span class="logo-dot">.</span> <em>Advanced VA</em></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#work" class="nav-link">Work Samples</a>
+      <a href="#process" class="nav-link">Process</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href="resume/VAangel_bargola_resume.pdf" class="btn btn-black btn-sm" download="VAangel_Bargola_Resume.pdf">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO / COVER ============ -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-copy reveal">
+      <p class="eyebrow">ADVANCED DATA ENTRY &middot; VIRTUAL ASSISTANT PORTFOLIO</p>
+      <h1 class="hero-title">Precise data.<br>Organized workflows.<br><em>Ready to deliver.</em></h1>
+      <p class="hero-sub">Hi, I'm Angel Bargola — an advanced Virtual Assistant specializing in data entry, automation, and administrative operations. With hands-on experience managing workflows and optimizing processes, I deliver accurate, organized results that help businesses run smoothly.</p>
+      <div class="hero-cta">
+        <a href="#work" class="btn btn-blush">View My Work</a>
+        <a href="resume/VAangel_bargola_resume.pdf" class="btn btn-outline" download="VAangel_Bargola_Resume.pdf">Download Resume</a>
+      </div>
+      <ul class="hero-contact">
+        <li><a href="mailto:va.angelbargola@gmail.com">va.angelbargola@gmail.com</a></li>
+        <li><a href="tel:+63955 284 1125">+63 955 284 1125</a></li>
+        <li><a href="https://linkedin.com/in/angelbargola" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+      </ul>
+    </div>
+
+    <div class="hero-stats reveal" style="--delay:120ms">
+      <div class="hero-stats-card">
+        <p class="eyebrow">KEY STATS</p>
+        <ul class="hero-stats-list">
+          <li><strong>1+ years</strong><span>experience</span></li>
+          <li><strong>98%+</strong><span>accuracy</span></li>
+          <li><strong>45 WPM</strong><span>typing speed</span></li>
+          <li><strong>100%</strong><span>data quality</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section about" id="about">
+  <div class="container about-grid">
+    <div class="about-photo reveal">
+      <div class="photo-placeholder photo-placeholder--sm">
+        <img src="images/image.png" alt="Angel Bargola" class="about-photo" />
+     </div>
+    </div>
+    <div class="about-copy reveal" style="--delay:100ms">
+      <p class="eyebrow">ABOUT ME</p>
+      <h2 class="section-title">Hi, I'm Angel Bargola</h2>
+      <p>I'm an experienced Virtual Assistant with a proven track record in data entry, administrative operations, and workflow automation. I started my career as a Customer Service Representative at Startek, where I developed strong communication and problem-solving skills. I was then promoted to Encoder, and eventually advanced to Company Admin and Point of Contact (POC), managing cross-functional teams and optimizing business processes.</p>
+      <p>I specialize in organizing complex data, automating repetitive tasks using tools like Botcake and Pancake, and maintaining high accuracy standards. I am knowledgeable in various AI tools for productivity enhancement and bring a professional, detail-oriented approach to every project I undertake.</p>
+      <div class="about-stats">
+        <div><strong>1+ Years Experience</strong><span>Customer Service & Admin Operations</span></div>
+        <div><strong>Advanced Tools</strong><span>Excel, Sheets, Automation, AI Tools</span></div>
+        <div><strong>Proven Track Record</strong><span>Promoted from Encoder to Company Admin</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROFESSIONAL SUMMARY ============ -->
+<section class="section summary">
+  <div class="container">
+    <p class="eyebrow center">PROFESSIONAL SUMMARY</p>
+    <h2 class="section-title center">What I bring to the table</h2>
+    <div class="summary-grid">
+      <div class="summary-card reveal">
+        <div class="icon-circle">⌨️</div>
+        <h3>Fast & Accurate Typing</h3>
+        <p>45 WPM with 98%+ accuracy. I deliver clean, error-free data entry consistently and efficiently.</p>
+      </div>
+      <div class="summary-card reveal" style="--delay:80ms">
+        <div class="icon-circle">🗂️</div>
+        <h3>Process Optimization</h3>
+        <p>I design and implement workflows that streamline operations, reduce errors, and improve efficiency.</p>
+      </div>
+      <div class="summary-card reveal" style="--delay:160ms">
+        <div class="icon-circle">📊</div>
+        <h3>Advanced Spreadsheet Skills</h3>
+        <p>Expert in Excel and Google Sheets: formulas, pivot tables, conditional formatting, and data analysis.</p>
+      </div>
+      <div class="summary-card reveal" style="--delay:240ms">
+        <div class="icon-circle">🤖</div>
+        <h3>Automation & AI Tools</h3>
+        <p>Proficient in Botcake, Pancake, Meta Business Suite, and various AI-powered productivity platforms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="section skills" id="skills">
+  <div class="container">
+    <p class="eyebrow center">HOW I CAN SUPPORT YOU</p>
+    <h2 class="section-title center">Skills &amp; Expertise</h2>
+
+    <div class="skills-grid">
+      <div class="skills-card reveal">
+        <div class="icon-circle icon-circle--blush">📋</div>
+        <h3>Data Entry</h3>
+        <ul class="pill-list">
+          <li>Fast & Accurate Typing</li>
+          <li>Data Validation</li>
+          <li>Data Cleaning</li>
+          <li>Data Verification</li>
+          <li>Record Management</li>
+          <li>Database Updating</li>
+        </ul>
+      </div>
+      <div class="skills-card reveal" style="--delay:80ms">
+        <div class="icon-circle icon-circle--blush">💻</div>
+        <h3>Productivity Tools</h3>
+        <ul class="pill-list">
+          <li>Microsoft Excel</li>
+          <li>Google Sheets</li>
+          <li>Microsoft Word</li>
+          <li>Google Workspace</li>
+          <li>Canva</li>
+          <li>Gmail Management</li>
+        </ul>
+      </div>
+      <div class="skills-card reveal" style="--delay:160ms">
+        <div class="icon-circle icon-circle--blush">🤖</div>
+        <h3>Automation & AI</h3>
+        <ul class="pill-list">
+          <li>Botcake</li>
+          <li>Pancake</li>
+          <li>Meta Business Suite</li>
+          <li>AI Productivity Tools</li>
+          <li>Workflow Automation</li>
+          <li>Marketing Automation</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Software proficiency table -->
+    <div class="proficiency-wrap reveal">
+      <h3 class="sub-title">Software Proficiency</h3>
+      <div class="table-card">
+        <table class="proficiency-table">
+          <thead>
+            <tr><th>Software</th><th>Level</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Microsoft Excel</td><td><span class="level-bar"><span class="level-fill" style="--pct:90%"></span></span><span class="level-tag level-tag--adv">Advanced</span></td></tr>
+            <tr><td>Google Sheets</td><td><span class="level-bar"><span class="level-fill" style="--pct:90%"></span></span><span class="level-tag level-tag--adv">Advanced</span></td></tr>
+            <tr><td>Google Workspace</td><td><span class="level-bar"><span class="level-fill" style="--pct:85%"></span></span><span class="level-tag level-tag--adv">Advanced</span></td></tr>
+            <tr><td>Botcake & Pancake</td><td><span class="level-bar"><span class="level-fill" style="--pct:80%"></span></span><span class="level-tag level-tag--adv">Advanced</span></td></tr>
+            <tr><td>Meta Business Suite</td><td><span class="level-bar"><span class="level-fill" style="--pct:80%"></span></span><span class="level-tag level-tag--adv">Advanced</span></td></tr>
+            <tr><td>Canva</td><td><span class="level-bar"><span class="level-fill" style="--pct:75%"></span></span><span class="level-tag level-tag--int">Intermediate</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Typing speed -->
+    <div class="typing-speed reveal">
+      <div class="typing-speed-stats">
+        <h3 class="sub-title">Typing Speed & Accuracy</h3>
+        <div class="typing-numbers">
+          <div><strong>46 WPM</strong><span>Words per minute</span></div>
+          <div><strong>98%+</strong><span>Accuracy rate</span></div>
+        </div>
+        <p class="muted">Verified typing speed with consistent accuracy. I maintain high-quality data entry standards across all projects.</p>
+      </div>
+      <div class="typing-screenshot photo-placeholder photo-placeholder--wide">
+        <img src="images/typing-test.jpeg" alt="Typing speed screenshot" class="typing-screenshot" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GRADIENT BANNER BREAK ============ -->
+<section class="banner">
+  <div class="container banner-inner reveal">
+    <h2>Every detail matters.<br>Every task builds confidence.</h2>
+    <p>I am building my skills through careful practice and a strong focus on accuracy, organization, and consistency.</p>
+    <a href="#contact" class="btn btn-black">Let’s Connect</a>
+  </div>
+</section>
+
+<!-- ============ WORK SAMPLES ============ -->
+<section class="section work" id="work">
+  <div class="container">
+    <p class="eyebrow center">PORTFOLIO</p>
+    <h2 class="section-title center">Professional Projects</h2>
+    <p class="section-sub center">These projects demonstrate my approach to data organization, workflow optimization, and maintaining accuracy across various business scenarios.</p>
+
+    <!-- Sample 1: Customer Database -->
+    <div class="sample-card reveal">
+      <div class="sample-text">
+        <span class="sample-tag">Sample 1</span>
+        <h3>Customer Database</h3>
+        <p>A practice example showing how I would organize customer information with clear, consistent formatting.</p>
+        <ul class="check-list">
+          <li>Customer ID</li><li>Name</li><li>Contact Number</li><li>Address</li><li>Status</li>
+        </ul>
+      </div>
+      <div class="sample-visual">
+        <div class="placeholder">
+          <strong>Customer Database Screenshot</strong>
+          <span><img src="images/database.jpeg" alt="Customer Database Screenshot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sample 2: Inventory Encoding -->
+    <div class="sample-card sample-card--rev reveal">
+      <div class="sample-text">
+        <span class="sample-tag">Sample 2</span>
+        <h3>Inventory Encoding</h3>
+        <p>A practice example for organizing product details and keeping stock information easy to review.</p>
+        <ul class="check-list">
+          <li>Product ID</li><li>Barcode</li><li>Quantity</li><li>Supplier</li><li>Price</li>
+        </ul>
+      </div>
+      <div class="sample-visual">
+        <div class="placeholder">
+          <strong>Inventory Sample Screenshot</strong>
+          <span><img src="images/inventory.jpeg" alt="Inventory Sample Screenshot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sample 3: Marketing Automation -->
+    <div class="sample-card reveal">
+      <div class="sample-text">
+        <span class="sample-tag">Sample 3</span>
+        <h3>Marketing Automation</h3>
+        <p>Implementation of end-to-end automation using Botcake and Pancake to optimize customer conversion and engagement.</p>
+        <ul class="check-list">
+          <li>Messenger Sequences</li><li>Broadcast Campaigns</li><li>Lead Conversion Flows</li><li>SOP Implementation</li>
+        </ul>
+      </div>
+      <div class="sample-visual">
+        <div class="placeholder">
+          <strong>Automation Workflow Screenshot</strong>
+          <span><img src="images/Marketing-Automation.jpeg" alt="Automation Workflow Screenshot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sample 4: Gmail Inbox Management -->
+    <div class="sample-card sample-card--rev reveal">
+      <div class="sample-text">
+        <span class="sample-tag">Sample 4</span>
+        <h3>Gmail Inbox Management</h3>
+        <p>Strategic organization of professional inboxes using custom labels, filters, and priority management for Zero Inbox efficiency.</p>
+        <ul class="check-list">
+          <li>Custom Labeling</li><li>Advanced Filtering</li><li>Priority Inbox Setup</li><li>Spam Reduction</li>
+        </ul>
+      </div>
+      <div class="sample-visual">
+        <div class="placeholder">
+          <strong>Inbox Management Screenshot</strong>
+          <span><img src="images/gmai;innbox-sample.jpeg" alt="Inbox Management Screenshot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sample 5: Calendar & Appointment Scheduling -->
+    <div class="sample-card reveal">
+      <div class="sample-text">
+        <span class="sample-tag">Sample 5</span>
+        <h3>Calendar & Appointment Scheduling</h3>
+        <p>Expert management of professional calendars, coordinating meetings across multiple time zones and resolving conflicts.</p>
+        <ul class="check-list">
+          <li>Google Calendar</li><li>Calendly Setup</li><li>Time Zone Coordination</li><li>Meeting Itineraries</li>
+        </ul>
+      </div>
+      <div class="sample-visual">
+        <div class="placeholder">
+          <strong>Calendar Screenshot</strong>
+          <span><img src="images/calendar-.jpeg" alt="Calendar Screenshot"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPREADSHEET PROJECTS ============ -->
+<section class="section projects">
+  <div class="container">
+    <p class="eyebrow center">PRACTICE PROJECTS</p>
+    <h2 class="section-title center">Spreadsheet Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <h3>Attendance Tracker</h3>
+        <p>A personal practice exercise for tracking attendance patterns and monthly totals.</p>
+        <div class="tag-row"><span class="tag">Formulas</span><span class="tag">Conditional Formatting</span></div>
+      </div>
+      <div class="project-card reveal" style="--delay:60ms">
+        <h3>Sales Encoding Sheet</h3>
+        <p>A simple spreadsheet exercise for logging sales and calculating totals.</p>
+        <div class="tag-row"><span class="tag">Formulas</span><span class="tag">Tables</span></div>
+      </div>
+      <div class="project-card reveal" style="--delay:120ms">
+        <h3>Inventory List</h3>
+        <p>A practice sheet for organizing stock information and highlighting low-stock items.</p>
+        <div class="tag-row"><span class="tag">Filters</span><span class="tag">Conditional Formatting</span></div>
+      </div>
+      <div class="project-card reveal" style="--delay:180ms">
+        <h3>Budget Tracker</h3>
+        <p>A personal budgeting exercise with category-based comparisons.</p>
+        <div class="tag-row"><span class="tag">Formulas</span><span class="tag">Tables</span></div>
+      </div>
+      <div class="project-card reveal" style="--delay:240ms">
+        <h3>Expense Log</h3>
+        <p>A practice log for tracking expenses by date and category.</p>
+        <div class="tag-row"><span class="tag">Filters</span><span class="tag">Formulas</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DATA QUALITY PROCESS (signature flow) ============ -->
+<section class="section process" id="process">
+  <div class="container">
+    <p class="eyebrow center">HOW I WORK</p>
+    <h2 class="section-title center">My Data Quality Process</h2>
+    <p class="section-sub center">Every file goes through the same six checkpoints before it reaches you.</p>
+
+    <div class="flow reveal">
+      <div class="flow-step">
+        <div class="flow-node">1</div>
+        <h4>Receive Data</h4>
+        <p>Files, forms, or raw sources come in from the client.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-node">2</div>
+        <h4>Verify Information</h4>
+        <p>Cross-check sources for completeness and accuracy.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-node">3</div>
+        <h4>Encode</h4>
+        <p>Input data using consistent formatting standards.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-node">4</div>
+        <h4>Validate</h4>
+        <p>Check for duplicates, errors, and formatting issues.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-node">5</div>
+        <h4>Review</h4>
+        <p>Final pass against the original source material.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-node">6</div>
+        <h4>Submit</h4>
+        <p>Clean, organized data delivered on schedule.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="section experience" id="experience">
+  <div class="container">
+    <p class="eyebrow center">LEARNING JOURNEY</p>
+    <h2 class="section-title center">Learning Journey</h2>
+
+    <div class="exp-card reveal">
+      <div class="exp-head">
+        <div>
+          <h3>Customer Service Representative</h3>
+          <p class="muted">Startek | Developed communication and problem-solving skills</p>
+        </div>
+      </div>
+      <ul class="check-list check-list--exp">
+        <li>Managed customer inquiries via phone, email, and chat with high satisfaction rates.</li>
+        <li>Processed transactions, refunds, and escalations with accuracy and professionalism.</li>
+        <li>Maintained detailed CRM records and customer account information.</li>
+      </ul>
+    </div>
+    <div class="exp-card reveal" style="margin-top: 30px;">
+      <div class="exp-head">
+        <div>
+          <h3>Encoder → Automation Specialist → Company Admin (POC)</h3>
+          <p class="muted">Promoted through three roles | Managed operations and automation</p>
+        </div>
+      </div>
+      <ul class="check-list check-list--exp">
+        <li>Started as Encoder, managing data entry and order validation with high accuracy.</li>
+        <li>Promoted to Automation Specialist, implementing marketing automation workflows using Botcake and Pancake.</li>
+        <li>Advanced to Company Admin and Point of Contact (POC), coordinating between Marketing, Operations, Customer Support, and Technical teams.</li>
+        <li>Developed SOPs, optimized conversion flows, and maintained operational data using Google Sheets and Drive.</li>
+        <li>Managed end-to-end marketing campaigns and Messenger sequences for improved customer engagement.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CERTIFICATIONS ============ -->
+<section class="section certs">
+  <div class="container">
+    <p class="eyebrow center">EXPERTISE & TOOLS</p>
+    <h2 class="section-title center">Advanced Skills & Tools</h2>
+    <div class="certs-grid">
+      <div class="cert-card reveal">
+        <div class="icon-circle icon-circle--blush">📊</div>
+        <h4>Advanced Data Management</h4>
+      </div>
+      <div class="cert-card reveal" style="--delay:60ms">
+        <div class="icon-circle icon-circle--blush">🤖</div>
+        <h4>Workflow Automation</h4>
+      </div>
+      <div class="cert-card reveal" style="--delay:120ms">
+        <div class="icon-circle icon-circle--blush">🧠</div>
+        <h4>AI-Powered Productivity</h4>
+      </div>
+      <div class="cert-card reveal" style="--delay:180ms">
+        <div class="icon-circle icon-circle--blush">📈</div>
+        <h4>Process Optimization</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESUME ============ -->
+<section class="section resume-section">
+  <div class="container resume-inner reveal">
+    <div>
+      <p class="eyebrow">ONE-PAGE RESUME</p>
+      <h2 class="section-title">Ready to work together?</h2>
+      <p>Download my one-page resume for a quick overview of my experience, skills, and how I can support your business.</p>
+    </div>
+    <a href="resume/VAangel_bargola_resume.pdf" class="btn btn-blush" download="VAangel_Bargola_Resume.pdf">Download Resume (PDF)</a>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-info reveal">
+      <p class="eyebrow">GET IN TOUCH</p>
+      <h2 class="section-title">Let's connect and collaborate</h2>
+      <p style="text-align: justify;">Thank you for reviewing my portfolio. I am ready to bring my expertise in data entry, automation, and administrative operations to your team. Whether you need support with spreadsheets, process optimization, or workflow automation, I'm here to deliver quality results.</p>
+      <ul class="contact-list">
+        <li><span>Email</span><a href="mailto:va.angelbargola@gmail.com">va.angelbargola@gmail.com</a></li>
+        <li><span>Phone</span><a href="tel:+63 955 284 1125">+63 955 284 1125</a></li>
+        <li><span>LinkedIn</span><a href="https://linkedin.com/in/angelbargola" target="_blank" rel="noopener">linkedin.com/in/angelbargola</a></li>
+      </ul>
+    </div>
+    <form class="contact-form" id="contactForm" style="--delay:100ms">
+      <label>Name
+        <input type="text" name="name" required>
+      </label>
+      <label>Email
+        <input type="email" name="email" required>
+      </label>
+      <label>Message
+        <textarea name="message" rows="4" required></textarea>
+      </label>
+      <button type="submit" class="btn btn-black">Send Message</button>
+      <p class="form-status" id="formStatus" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<div class="image-modal" id="imageModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="image-modal__backdrop" data-close-modal></div>
+  <div class="image-modal__panel">
+    <button class="image-modal__close" type="button" aria-label="Close image preview" data-close-modal>×</button>
+    <img src="" alt="" class="image-modal__image" />
+    <p class="image-modal__caption"></p>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>Angel Bargola — Data Entry Virtual Assistant</p>
+    <p class="muted">© <span id="year"></span> All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---------- Footer year ---------- */
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ---------- Mobile nav toggle ---------- */
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  /* ---------- Active nav link on scroll ---------- */
+  const sections = document.querySelectorAll('section[id]');
+  const navAnchors = document.querySelectorAll('.nav-link');
+
+  const setActiveLink = () => {
+    let currentId = '';
+    sections.forEach(section => {
+      const top = section.offsetTop - 120;
+      if (window.scrollY >= top) currentId = section.id;
+    });
+    navAnchors.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
+    });
+  };
+  window.addEventListener('scroll', setActiveLink, { passive: true });
+  setActiveLink();
+
+  /* ---------- Scroll reveal ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  } else {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+  }
+
+  /* ---------- Animated counters ---------- */
+  const counters = document.querySelectorAll('[data-count]');
+
+  const animateCounter = (el) => {
+    const target = parseFloat(el.getAttribute('data-count'));
+    const suffix = el.getAttribute('data-suffix') || '';
+    const duration = 1400;
+    const startTime = performance.now();
+
+    const tick = (now) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out-cubic
+      const value = Math.round(target * eased);
+      el.textContent = value + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  if (prefersReducedMotion) {
+    counters.forEach(el => {
+      const target = parseFloat(el.getAttribute('data-count'));
+      const suffix = el.getAttribute('data-suffix') || '';
+      el.textContent = target + suffix;
+    });
+  } else {
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(el => counterObserver.observe(el));
+  }
+
+  /* ---------- Contact form (front-end only) ---------- */
+  const form = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+
+      if (!name || !email || !message) {
+        formStatus.textContent = 'Please fill in every field before sending.';
+        formStatus.style.color = '#B15C5C';
+        return;
+      }
+
+      // NOTE: This is front-end only. Connect this to a real email service
+      // (e.g. Formspree, EmailJS, or your own backend) to actually receive messages.
+      formStatus.textContent = `Thanks, ${name.split(' ')[0]}! Your message has been noted — I'll reply within 24 hours.`;
+      formStatus.style.color = '#6E9B7B';
+      form.reset();
+    });
+  }
+
+  const imageModal = document.getElementById('imageModal');
+  const modalImage = imageModal?.querySelector('.image-modal__image');
+  const modalCaption = imageModal?.querySelector('.image-modal__caption');
+  const closeModalButtons = imageModal?.querySelectorAll('[data-close-modal]');
+
+  const toggleImageModal = (open) => {
+    if (!imageModal) return;
+    imageModal.classList.toggle('is-open', open);
+    imageModal.setAttribute('aria-hidden', String(!open));
+    if (!open) {
+      modalImage && modalImage.removeAttribute('src');
+      modalImage && modalImage.removeAttribute('alt');
+      modalCaption && (modalCaption.textContent = '');
+    }
+  };
+
+  document.querySelectorAll('.sample-visual img').forEach(img => {
+    img.addEventListener('click', () => {
+      if (!modalImage) return;
+      const cardTitle = img.closest('.sample-card')?.querySelector('.sample-text h3')?.textContent || '';
+      modalImage.src = img.src;
+      modalImage.alt = img.alt || cardTitle;
+      if (modalCaption) {
+        modalCaption.textContent = cardTitle ? `Preview: ${cardTitle}` : img.alt || 'Screenshot preview';
+      }
+      toggleImageModal(true);
+    });
+  });
+
+  closeModalButtons?.forEach(button => button.addEventListener('click', () => toggleImageModal(false)));
+  imageModal?.addEventListener('click', (event) => {
+    if (event.target === imageModal || event.target.matches('[data-close-modal]')) {
+      toggleImageModal(false);
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      toggleImageModal(false);
+    }
+  });
+
+});
+</script>
+</body>
+</html>
