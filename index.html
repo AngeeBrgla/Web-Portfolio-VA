@@ -848,6 +848,35 @@ input, textarea { font-family: inherit; font-size: 1rem; }
   font-weight: 600;
 }
 
+.scroll-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--blush);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,0.4);
+  box-shadow: 0 16px 32px rgba(43, 36, 32, 0.15);
+  cursor: pointer;
+  transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  z-index: 110;
+}
+.scroll-to-top:hover {
+  transform: translateY(-2px);
+}
+.scroll-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
 /* ============================================
    SCROLL REVEAL
 ============================================ */
@@ -1381,7 +1410,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
       <ul class="contact-list">
         <li><span>Email</span><a href="mailto:va.angelbargola@gmail.com">va.angelbargola@gmail.com</a></li>
         <li><span>Phone</span><a href="tel:+63 955 284 1125">+63 955 284 1125</a></li>
-        <li><span>LinkedIn</span><a href="https://https://www.linkedin.com/in/angel-bargola-a22576424/" target="_blank" rel="noopener">https://https://www.linkedin.com/in/angel-bargola-a22576424/</a></li>
+        <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/angel-bargola-a22576424/" target="_blank" rel="noopener">Angel Bargola</a></li>
       </ul>
     </div>
     <form class="contact-form" id="contactForm" style="--delay:100ms">
@@ -1411,10 +1440,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <p>Angel Bargola — Data Entry Virtual Assistant</p>
+    <p>Angel Bargola — Virtual Assistant</p>
     <p class="muted">© <span id="year"></span> All rights reserved.</p>
   </div>
 </footer>
+
+<button class="scroll-to-top" id="scrollToTop" type="button" aria-label="Scroll to top">↑</button>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -1582,6 +1613,23 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleImageModal(false);
     }
   });
+
+  /* ---------- Scroll to top button ---------- */
+  const scrollToTopButton = document.getElementById('scrollToTop');
+
+  if (scrollToTopButton) {
+    const updateScrollToTop = () => {
+      const show = window.scrollY > 420;
+      scrollToTopButton.classList.toggle('is-visible', show);
+    };
+
+    window.addEventListener('scroll', updateScrollToTop, { passive: true });
+    updateScrollToTop();
+
+    scrollToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
 });
 </script>
