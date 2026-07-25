@@ -49,8 +49,13 @@ module.exports = async (req, res) => {
     return;
   }
 
+  const EMAIL_FROM_NAME = process.env.EMAIL_FROM_NAME || 'Angel Bargola Web Profile';
+  const fromAddress = (EMAIL_FROM && EMAIL_FROM.includes('@'))
+    ? EMAIL_FROM
+    : (SMTP_USER || `no-reply@${new URL(`https://${req.headers.host || 'example.com'}`).hostname}`);
+
   const mailOptions = {
-    from: `"Angel Bargola Portfolio" <${EMAIL_FROM}>`,
+    from: `"${EMAIL_FROM_NAME}" <${fromAddress}>`,
     to: EMAIL_TO,
     subject: `New contact message from ${name}`,
     text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,

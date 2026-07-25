@@ -1546,12 +1546,12 @@ document.addEventListener('DOMContentLoaded', () => {
     counters.forEach(el => counterObserver.observe(el));
   }
 
-  /* ---------- Contact form (front-end only) ---------- */
+  /* ---------- Contact form (Vercel API backend) ---------- */
   const form = document.getElementById('contactForm');
   const formStatus = document.getElementById('formStatus');
 
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const name = form.name.value.trim();
@@ -1564,11 +1564,33 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // NOTE: This is front-end only. Connect this to a real email service
-      // (e.g. Formspree, EmailJS, or your own backend) to actually receive messages.
-      formStatus.textContent = `Thanks, ${name.split(' ')[0]}! Your message has been noted — I'll reply within 24 hours.`;
+      formStatus.textContent = 'Sending message...';
       formStatus.style.color = '#6E9B7B';
-      form.reset();
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email, message }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          formStatus.textContent = data.error || 'Unable to send message right now. Please try again later.';
+          formStatus.style.color = '#B15C5C';
+          return;
+        }
+
+        formStatus.textContent = 'Thanks! Your message has been sent successfully.';
+        formStatus.style.color = '#6E9B7B';
+        form.reset();
+      } catch (error) {
+        formStatus.textContent = 'Network error. Please check your connection and try again.';
+        formStatus.style.color = '#B15C5C';
+      }
     });
   }
 
