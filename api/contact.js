@@ -50,7 +50,7 @@ module.exports = async (req, res) => {
   }
 
   const mailOptions = {
-    from: EMAIL_FROM || `no-reply@${new URL(`https://${req.headers.host || 'example.com'}`).hostname}`,
+    from: `"Angel Bargola Portfolio" <${EMAIL_FROM}>`,
     to: EMAIL_TO,
     subject: `New contact message from ${name}`,
     text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
